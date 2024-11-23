@@ -1,0 +1,25 @@
+{
+  "name": "my-dynamic-personal-webpage",
+  "version": "1.0.0",
+  "description": "A dynamic personal webpage using Vite",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vite",
+    "dynamic",
+    "webpage",
+    "personal"
+  ],
+  "author": "Denis Ureke",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-plugin-checker": "^0.8.0"
+  }
+}

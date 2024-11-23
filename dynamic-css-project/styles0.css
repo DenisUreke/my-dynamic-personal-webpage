@@ -1,0 +1,157 @@
+
+/**
+* Hi, I’m Denis!
+* I’m currently pursuing a degree in Computer Engineering
+* at Jönköping University.
+* 
+* How about we roll up our sleeves and start sprucing up 
+* this drag page a bit?
+*/
+
+* {
+    transition: all 1s;
+  }
+  
+/**
+* Just for future effect =).
+* Now lets add the foundation to our layout.
+* Also change the backgriund colour while we are at it.
+*/
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #1F2833;
+  }
+
+/**
+* Oh....
+* Better change the colour of our text so we can see what we are writing.
+*/
+  
+  pre, a {
+    color: white;
+  }
+
+/**
+* Much better! Let's organize this a bit and move the code
+* to a window.
+*/
+  
+  .main-page-parent {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 3%;
+    gap: 1vh;
+  }
+
+/**
+* MI aplogize but now were going to jump around a bit
+* until we find the sweet spot. So sorry in advance.
+*/
+
+  .main-page-parent {
+    justify-content: center;
+  }
+  
+/**
+* and ...
+*/
+  
+  .main-page-child {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: start;
+    gap: 1vh;
+  }
+  
+/**
+* almost done... promise.
+*/
+  
+    .scroll-box {
+      display: flex;
+      flex: 1;
+      width: 100%;
+      flex-direction: column;
+      box-sizing: border-box;
+      overflow-y: auto;
+      background-color: #0B0C10;
+      padding-left: 2%;
+      padding-right: 20%;
+      padding-top: 2%;
+    }
+
+/**
+* Now to just change the font and size.
+*/
+    .scroll-box {
+      font-family: monospace;
+      font-size: clamp(0.5rem, 1rem, 2rem);
+    }
+
+  
+/**
+* There! Now we have it more organized!
+* Hmm let's make the design a bit nicer, let's add some shadow, a nice border
+* some colour changes maybe...
+*/
+
+.scroll-box {
+    border: 1px solid #45A29E;
+    scrollbar-color: #45A29E #1F2833;
+    box-shadow: 8px 8px 5px 0px rgba(0, 0, 0, 0.2);
+  }
+
+/**
+* Looks better already.
+* Let's change the color so we can se what is what.
+*/
+  
+    .selector { color: rgb(255, 166, 0); }
+    .property { color: rgb(27, 168, 211); }
+    .value_integer { color: rgb(126, 189, 126); }
+    .value_text { color: rgb(218, 129, 129); }
+    .brackets { color: rgb(128, 0, 128)}
+    .comments{
+      font-size: clamp(0.5rem, 1rem, 2rem);
+      color: rgb(128, 128, 128);
+      font-style: italic;
+    }
+  
+/**
+* So much cooler, right?.
+*/
+  
+    .sub-title {
+      font-size: clamp(0.5rem, 1.3rem, 2rem);
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  
+    .output-box {
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+  
+    .bottom-button {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .title {
+        font-size: clamp(1rem, 1.8rem, 3rem);
+        font-weight: bold;
+      }
