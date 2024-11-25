@@ -2,6 +2,8 @@
 * Hi, I’m Denis!
 * I’m currently pursuing a degree in Computer Engineering
 * at Jönköping University.
+*
+* Before we start I would like to credit Samuel Reed for the inspiration.
 * 
 * How about we roll up our sleeves and start sprucing up 
 * this drag page a bit?
@@ -12,7 +14,7 @@
 }
 
 /**
-* Just for future effect =)..
+* Just for future effect.
 * Now lets add the foundation to our layout.
 * Also change the background colour while we are at it.
 */
@@ -27,7 +29,7 @@ html, body {
 
 /**
 * Oh..
-* Better change the colour of our text so we can see what we are writing.
+* I'll change it right away! Sorry!
 */
 
 pre, a {
@@ -57,7 +59,7 @@ pre, a {
 }
 
 /**
-* Much better! Let's organize this a bit and move the code
+* Much better, Let's organize this a bit and move the code
 * to a window.
 */
 
@@ -80,10 +82,6 @@ pre, a {
 .main-page-parent {
   justify-content: center;
 }
-
-/**
-* and ...
-*/
 
 .main-page-child {
   display: flex;
@@ -115,7 +113,7 @@ pre, a {
 }
 
 /**
-* Much better right?..
+* Much better right?
 * Now to just change the font and size.
 * Might as well change the comment colour also.
 */
@@ -130,8 +128,8 @@ pre, a {
 
 /**
 * There! Now we have it more organized.
-* Hmm let's make the design a bit nicer, let's add some shadow, a nice border...
-* some colour changes maybe...
+* Hmm let's make the design a bit nicer, let's add some shadow, a nice border.
+* some colour changes maybe.
 */
 
 .scroll-box {
@@ -141,29 +139,6 @@ pre, a {
 }
 
 /**
-* So much cooler, right?.
+* So much cooler, right?
+* Let's fill the other boxes with some stuff.
 */
-
-.sub-title {
-  font-size: clamp(0.5rem, 1.3rem, 2rem);
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.output-box {
-  white-space: pre-wrap;
-  font-family: monospace;
-}
-
-.bottom-button {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.title {
-  font-size: clamp(1rem, 1.8rem, 3rem);
-  font-weight: bold;
-}

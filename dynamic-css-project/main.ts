@@ -1,7 +1,10 @@
 import styles0 from './styles0.css?raw';
+import fileContent from './contactinfo.txt?raw';
 
 const styleTag = document.getElementById('style-tag') as HTMLStyleElement;
 const codeContent = document.getElementById('code-content') as HTMLElement;
+const contactContent = document.getElementById('contact-content') as HTMLElement;
+const portfoliocontent = document.getElementById('portfolio-content') as HTMLElement;
 
 enum Box{
   Code,
@@ -9,10 +12,18 @@ enum Box{
   Portfolio
 }
 
+async function writeContact(){
+  
+  for(let i = 0; i < fileContent.length; i++){
+    contactContent.innerHTML += fileContent[i];
+    await pause(20);
+  }
+}
+
 
 async function writeToDocument(rawCSS: string) {
-  let fullText = ''; // Buffer for the live display
-  let styleBuffer = ''; // Buffer for CSS rules to apply live
+  let fullText = '';
+  let styleBuffer = '';
 
   for (let i = 0; i < rawCSS.length; i++) {
     const character = rawCSS[i];
@@ -43,13 +54,11 @@ async function writeToDocument(rawCSS: string) {
       behavior: 'smooth',
     });
 
-    // Add the character to the style buffer
     styleBuffer += character;
 
-    // Append to the <style> tag when a rule/block ends
     if (character === ';' || character === '}') {
       styleTag.textContent += styleBuffer;
-      styleBuffer = ''; // Clear the buffer
+      styleBuffer = '';
     }
 
     await pause(20);
@@ -66,15 +75,12 @@ const pxRegex2 = /p$/;
 
 function writeChar(fullText: string, char: string) {
   if (openComment && char !== '/') {
-    // Short-circuit during a comment so we don't highlight inside it.
     fullText += char;
   } else if (char === '/' && openComment === false) {
     openComment = true;
     fullText += char;
   } else if (char === '/' && fullText.slice(-1) === '*' && openComment === true) {
     openComment = false;
-    // Unfortunately we can't just open a span and close it, because the browser will helpfully
-    // 'fix' it for us, and we'll end up with a single-character span and an empty closing tag.
     fullText = fullText.replace(commentRegex, '<span class="comment">$1/</span>');
   } else if (char === ':') {
     fullText = fullText.replace(keyRegex, '<span class="key">$1</span>:');
@@ -104,4 +110,5 @@ function pause(duration: number): Promise<void> {
 }
 
 const cleanedCSS = cleanRawCSS(styles0);
-writeToDocument(cleanedCSS);
+//writeToDocument(cleanedCSS);
+writeContact();
