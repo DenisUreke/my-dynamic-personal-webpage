@@ -3,6 +3,13 @@ import styles0 from './styles0.css?raw';
 const styleTag = document.getElementById('style-tag') as HTMLStyleElement;
 const codeContent = document.getElementById('code-content') as HTMLElement;
 
+enum Box{
+  Code,
+  Contanct, 
+  Portfolio
+}
+
+
 async function writeToDocument(rawCSS: string) {
   let fullText = ''; // Buffer for the live display
   let styleBuffer = ''; // Buffer for CSS rules to apply live
@@ -10,12 +17,31 @@ async function writeToDocument(rawCSS: string) {
   for (let i = 0; i < rawCSS.length; i++) {
     const character = rawCSS[i];
 
-    // Process the current character and update fullText
     fullText = writeChar(fullText, character);
+    
+    const lastFewChars = fullText.slice(-8);
+    if (lastFewChars.includes('/</span>')) {
+      fullText += '<br>';
+    }
+    if(character === '}'){
+      fullText += '<br>'
+    }
 
-    // Update the live coding display
+    const lastTwo = fullText.slice(-2);
+    const lookForDot = /([a-zA-Z]\.|\.{2})/;
     codeContent.innerHTML = fullText;
-    codeContent.scrollTop = codeContent.scrollHeight; // Ensure scrolling stays at the bottom
+    if(lookForDot.test(lastTwo) || character === '?'){
+      await pause(1200);
+    }
+    if(character === '}' || character === ','){
+      await pause(500);
+    }
+
+    codeContent.scrollTop = codeContent.scrollHeight;
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    });
 
     // Add the character to the style buffer
     styleBuffer += character;
@@ -26,8 +52,7 @@ async function writeToDocument(rawCSS: string) {
       styleBuffer = ''; // Clear the buffer
     }
 
-    // Simulate typing delay and allow browser to repaint
-    await new Promise(resolve => setTimeout(resolve, 50)); // Adjust speed as needed
+    await pause(20);
   }
 }
 
@@ -65,4 +90,18 @@ function writeChar(fullText: string, char: string) {
   return fullText;
 }
 
-writeToDocument(styles0);
+function cleanRawCSS(rawCSS: string): string {
+  return rawCSS
+    .replace(/[\r]/g, '')          // carriage return
+    .replace(/^\s+/gm, '')         // leading spaces
+    .replace(/\s+$/gm, '')         // trailing spaces
+    .replace(/\n+/g, '\n')         // multiple newlines
+    .trim();                       // extra spaces or blank lines
+}
+
+function pause(duration: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, duration));
+}
+
+const cleanedCSS = cleanRawCSS(styles0);
+writeToDocument(cleanedCSS);
