@@ -18,13 +18,13 @@
 * Also change the backgriund colour while we are at it.
 */
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #1F2833;
-  }
+html, body {
+margin: 0;
+padding: 0;
+height: 100%;
+width: 100%;
+background-color: #1F2833;
+}
 
 /**
 * Oh....
@@ -96,7 +96,7 @@
 */
     .scroll-box {
       font-family: monospace;
-      font-size: clamp(0.5rem, 1rem, 2rem);
+      font-size: clamp(0.5rem, 0.8rem, 1.6rem);
     }
 
   
@@ -117,16 +117,12 @@
 * Let's change the color so we can se what is what.
 */
   
-    .selector { color: rgb(255, 166, 0); }
-    .property { color: rgb(27, 168, 211); }
-    .value_integer { color: rgb(126, 189, 126); }
-    .value_text { color: rgb(218, 129, 129); }
-    .brackets { color: rgb(128, 0, 128)}
-    .comments{
-      font-size: clamp(0.5rem, 1rem, 2rem);
-      color: rgb(128, 128, 128);
-      font-style: italic;
-    }
+.comment       { color: #857F6B; font-style: italic; }
+.selector      { color: #E69F0F; }
+.selector .key { color: #64D5EA; }
+.key           { color: #64D5EA; }
+.value         { color: #BE84F2; }
+.value.px      { color: #F92772; }
   
 /**
 * So much cooler, right?.

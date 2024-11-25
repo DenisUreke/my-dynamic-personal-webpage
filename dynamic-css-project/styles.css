@@ -1,3 +1,7 @@
 pre {
     margin: 0;
   }
+  
+  .scroll-box {
+    display: inline-block !important;
+  }

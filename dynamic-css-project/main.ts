@@ -1,75 +1,68 @@
 import styles0 from './styles0.css?raw';
 
-// Function to inject raw CSS into a <style> tag and display it in a <pre> tag with auto-scroll
-async function injectCssWithTyping(css: string, delay: number = 20) {
-  const styleTag = document.getElementById('style-tag') as HTMLStyleElement;
-  const preTag = document.getElementById('code-content');
+const styleTag = document.getElementById('style-tag') as HTMLStyleElement;
+const codeContent = document.getElementById('code-content') as HTMLElement;
 
-  let currentIndex = 0;
+async function writeToDocument(rawCSS: string) {
+  let fullText = ''; // Buffer for the live display
+  let styleBuffer = ''; // Buffer for CSS rules to apply live
 
-  function typeNextCharacter() {
-    if (currentIndex < css.length) {
-      const nextChar = css[currentIndex];
-      styleTag.textContent += nextChar;
-      if (preTag) {
-        preTag.textContent += nextChar;
+  for (let i = 0; i < rawCSS.length; i++) {
+    const character = rawCSS[i];
 
-        // Auto-scroll
-        preTag.scrollTop = preTag.scrollHeight;
+    // Process the current character and update fullText
+    fullText = writeChar(fullText, character);
 
-        // Auto-scroll
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: 'smooth' // Smooth scrolling for better UX
-        });
-      }
-      currentIndex++;
-      setTimeout(typeNextCharacter, delay); // Wait for the next character
+    // Update the live coding display
+    codeContent.innerHTML = fullText;
+    codeContent.scrollTop = codeContent.scrollHeight; // Ensure scrolling stays at the bottom
+
+    // Add the character to the style buffer
+    styleBuffer += character;
+
+    // Append to the <style> tag when a rule/block ends
+    if (character === ';' || character === '}') {
+      styleTag.textContent += styleBuffer;
+      styleBuffer = ''; // Clear the buffer
     }
+
+    // Simulate typing delay and allow browser to repaint
+    await new Promise(resolve => setTimeout(resolve, 50)); // Adjust speed as needed
   }
-
-  typeNextCharacter();
 }
 
-async function extractObjects(styles0: string): Promise <string>{
-    const selectorRegex = /^([^{]+){/;
-    const propertyRegex = /([a-zA-Z-]+):/g;
-    const valueRegex = /:\s*([^;]+);/g;
-    const bracketRegex = /[{}]/g;
-    const commentRegex = /\/\*.*\*\//g;
+let openComment = false;
+const commentRegex = /(\/\*(?:[^](?!\/\*))*\*)$/;
+const keyRegex = /([a-zA-Z- ^\n]*)$/;
+const valueRegex = /([^:]*)$/;
+const selectorRegex = /(.*)$/;
+const pxRegex = /\dp/;
+const pxRegex2 = /p$/;
 
-    let highlighted = styles0;
-
-    // Highlight comments
-    highlighted = highlighted.replace(commentRegex, (match) => `<span class="comments">${match}</span>`);
-
-    // Highlight selectors
-    highlighted = highlighted.replace(selectorRegex, (match, selector) => 
-      `<span class="selector">${selector.trim()}</span> <span class="brackets">{</span>`
-    );
-
-    // Highlight properties
-    highlighted = highlighted.replace(propertyRegex, (match, property) => 
-      `<span class="property">${property}</span>:`
-    );
-
-    // Highlight values
-    highlighted = highlighted.replace(valueRegex, (match, value) => {
-      const valueClass = /^[0-9.]+(px|em|rem|%|vh|vw|s)?$/.test(value.trim())
-        ? 'value_integer'
-        : 'value_text';
-      return `: <span class="${valueClass}">${value.trim()}</span>;`;
-    });
-
-    // Highlight brackets
-    highlighted = highlighted.replace(bracketRegex, (match) => 
-      `<span class="brackets">${match}</span>`
-    );
-
-    return highlighted;
-
+function writeChar(fullText: string, char: string) {
+  if (openComment && char !== '/') {
+    // Short-circuit during a comment so we don't highlight inside it.
+    fullText += char;
+  } else if (char === '/' && openComment === false) {
+    openComment = true;
+    fullText += char;
+  } else if (char === '/' && fullText.slice(-1) === '*' && openComment === true) {
+    openComment = false;
+    // Unfortunately we can't just open a span and close it, because the browser will helpfully
+    // 'fix' it for us, and we'll end up with a single-character span and an empty closing tag.
+    fullText = fullText.replace(commentRegex, '<span class="comment">$1/</span>');
+  } else if (char === ':') {
+    fullText = fullText.replace(keyRegex, '<span class="key">$1</span>:');
+  } else if (char === ';') {
+    fullText = fullText.replace(valueRegex, '<span class="value">$1</span>;');
+  } else if (char === '{') {
+    fullText = fullText.replace(selectorRegex, '<span class="selector">$1</span>{');
+  } else if (char === 'x' && pxRegex.test(fullText.slice(-2))) {
+    fullText = fullText.replace(pxRegex2, '<span class="value px">px</span>');
+  } else {
+    fullText += char;
+  }
+  return fullText;
 }
 
-// Inject the CSS with a typing effect
-injectCssWithTyping(styles0, 20);
-
+writeToDocument(styles0);
