@@ -1,3 +1,4 @@
+
 /**
 * Lets make them a bit bigger!
 */
@@ -7,11 +8,19 @@
   font-weight: bold;
 }
 
+/**
+* Maybe an underline.
+*/
+
 .sub-title {
     font-size: clamp(0.8rem, 1.4rem, 3rem);
     font-weight: bold;
     text-decoration: underline;
   }
+
+/**
+* Hard to contact me if you can't see it..
+*/
 
 .content {
   font-size: clamp(0.6rem, 1.2rem, 2rem);

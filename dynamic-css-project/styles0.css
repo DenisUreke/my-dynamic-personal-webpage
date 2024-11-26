@@ -15,8 +15,8 @@
 
 /**
 * Just for future effect.
-* Now lets add the foundation to our layout.
-* Also change the background colour while we are at it.
+* Now, let's add the start with the basics.
+* Maybe change background colour while we are at it.
 */
 
 html, body {
@@ -29,7 +29,7 @@ html, body {
 
 /**
 * Oh..
-* I'll change it right away! Sorry!
+* I'll fix it right away! Sorry!
 */
 
 pre, a {
@@ -37,9 +37,9 @@ pre, a {
 }
 
 /**
-* Much better sorry about that..
+* Much better, sorry about that..
 * While we are at it might as well change the colour of our code 
-* so we see what we are doing.
+* so we see what is what.
 */
 
 .selector { 
@@ -59,8 +59,8 @@ pre, a {
 }
 
 /**
-* Much better, Let's organize this a bit and move the code
-* to a window.
+* Much better, Let's organize this a bit and move this code
+* to it's own window.
 */
 
 .main-page-parent {
@@ -96,7 +96,6 @@ pre, a {
 
 /**
 * almost done... promise.
-* Let's get this in it's own box.
 */
 
 .scroll-box {
@@ -113,9 +112,8 @@ pre, a {
 }
 
 /**
-* Much better right?
+* Phew... finally.
 * Now to just change the font and size.
-* Might as well change the comment colour also.
 */
 
 .scroll-box {
@@ -129,7 +127,6 @@ pre, a {
 /**
 * There! Now we have it more organized.
 * Hmm let's make the design a bit nicer, let's add some shadow, a nice border.
-* some colour changes maybe.
 */
 
 .scroll-box {
@@ -139,6 +136,6 @@ pre, a {
 }
 
 /**
-* So much cooler, right?
-* Let's fill the other boxes with some stuff.
+* A bit better, right?
+* Now to give you what you came for.
 */
