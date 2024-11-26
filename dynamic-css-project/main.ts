@@ -1,9 +1,11 @@
 import styles0 from './styles0.css?raw';
+import styles1 from './styles0.css?raw';
 import fileContent from './contactinfo.txt?raw';
+import { writeContact } from './contact';
 
+const contactContent = document.getElementById('contact-content') as HTMLElement;
 const styleTag = document.getElementById('style-tag') as HTMLStyleElement;
 const codeContent = document.getElementById('code-content') as HTMLElement;
-const contactContent = document.getElementById('contact-content') as HTMLElement;
 const portfoliocontent = document.getElementById('portfolio-content') as HTMLElement;
 
 enum Box{
@@ -11,15 +13,6 @@ enum Box{
   Contanct, 
   Portfolio
 }
-
-async function writeContact(){
-  
-  for(let i = 0; i < fileContent.length; i++){
-    contactContent.innerHTML += fileContent[i];
-    await pause(20);
-  }
-}
-
 
 async function writeToDocument(rawCSS: string) {
   let fullText = '';
@@ -96,7 +89,7 @@ function writeChar(fullText: string, char: string) {
   return fullText;
 }
 
-function cleanRawCSS(rawCSS: string): string {
+export function cleanRawCSS(rawCSS: string): string {
   return rawCSS
     .replace(/[\r]/g, '')          // carriage return
     .replace(/^\s+/gm, '')         // leading spaces
@@ -105,10 +98,18 @@ function cleanRawCSS(rawCSS: string): string {
     .trim();                       // extra spaces or blank lines
 }
 
-function pause(duration: number): Promise<void> {
+export function pause(duration: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, duration));
 }
 
+
+async function Start(cleanedone: string, cleanedtwo: string){
+await writeToDocument(cleanedone);
+//await writeContact(contactContent);
+await writeToDocument(cleanedtwo);
+}
+
 const cleanedCSS = cleanRawCSS(styles0);
-//writeToDocument(cleanedCSS);
-writeContact();
+const cleanedCSStwo = cleanRawCSS(styles1)
+
+Start(cleanedCSS, cleanedCSStwo)
