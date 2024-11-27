@@ -9,7 +9,7 @@ pre {
   #toggleButton {
     position: fixed;
     bottom: 1%; 
-    left: 50%;
+    left: 90%;
     transform: translateX(-50%);
     padding: 10px 20px;
     font-size: 0.8rem;

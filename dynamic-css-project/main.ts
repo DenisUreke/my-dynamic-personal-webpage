@@ -4,6 +4,7 @@ import styles2 from './styles2.css?raw';
 import fileContent from './contactinfo.txt?raw';
 import filecontent2 from './portfolio.txt?raw';
 
+
 const contactContent = document.getElementById('contact-content') as HTMLElement;
 const styleTag = document.getElementById('style-tag') as HTMLStyleElement;
 const codeContent = document.getElementById('code-content') as HTMLElement;
