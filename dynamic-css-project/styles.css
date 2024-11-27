@@ -5,3 +5,21 @@ pre {
   .scroll-box {
     display: inline-block !important;
   }
+
+  #toggleButton {
+    position: fixed;
+    bottom: 1%; 
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    border: none;
+    background-color: #45A29E;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #toggleButton:hover {
+    background-color: #66FCF1;
+  }

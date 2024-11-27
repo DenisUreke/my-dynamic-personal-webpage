@@ -108,7 +108,7 @@ function wrapPortfolio(fullText: string, line: string): string {
     }
     else if(index2 >= 2){
       let name = extractName(line);
-      return fullText.replace(line,`<span class="link"><a href="${line.trim()}">${name}</a></span>\n`);
+      return fullText.replace(line,`<span class="link"><a href="${line.trim()}" target="_blank">${name}</a></span>\n`);
     }
     return fullText.replace(line, `<span ${ContactType.Content}>${line}</span>`);
   }
@@ -222,8 +222,22 @@ export function cleanRawCSS(rawCSS: string): string {
     .trim();                       // extra spaces or blank lines
 }
 
+let hurryUp: boolean = false;
+
+const toggleButton = document.getElementById('toggleButton') as HTMLButtonElement;
+
+toggleButton.addEventListener('click', () =>{
+  hurryUp = !hurryUp;
+})
+
 export function pause(duration: number): Promise<void> {
+
+  if(!hurryUp){
   return new Promise(resolve => setTimeout(resolve, duration));
+  }
+  else{
+    return new Promise(resolve => setTimeout(resolve, 0));
+  }
 }
 
 
