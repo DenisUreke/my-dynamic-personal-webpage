@@ -219,7 +219,7 @@ export function cleanRawCSS(rawCSS: string): string {
     .replace(/^\s+/gm, '')         // leading spaces
     .replace(/\s+$/gm, '')         // trailing spaces
     .replace(/\n+/g, '\n')         // multiple newlines
-    .trim();                       // extra spaces or blank lines
+    .trim();                       // extra spaces or blank liness
 }
 
 let hurryUp: boolean = false;
