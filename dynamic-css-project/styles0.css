@@ -1,24 +1,24 @@
 /**
-* Hi, I’m Denis!
-* I’m currently pursuing a degree in Computer Engineering
-* at Jönköping University.
-*
-* Before we start I would like to credit Samuel Reed for the inspiration.
-* 
-* How about we roll up our sleeves and start sprucing up 
-* this drag page a bit?
-*/
+ * Hey there! 👋
+ * I’m Denis, a Computer Engineering student
+ * at Jönköping University.
+ *
+ * A quick shoutout to Samuel Reed for the inspiration behind this project!
+ * 
+ * Let’s roll up our sleeves and make this drag page 
+ * something fun and interactive. Shall we? 🚀
+ */
 
+/* Let's make everything transition smoothly. It's all in the details! */
 * {
   transition: all 1s;
 }
 
 /**
-* Just for future effect.
-* Now, let's add the start with the basics.
-* Maybe change background colour while we are at it.
-*/
-
+ * Time to set the stage.
+ * We'll start with a sleek, dark background.
+ * Something easy on the eyes. 🌌
+ */
 html, body {
   margin: 0;
   padding: 0;
@@ -28,20 +28,18 @@ html, body {
 }
 
 /**
-* Oh..
-* I'll fix it right away! Sorry!
-*/
-
+ * Oops! Looks like we need to fix the text color
+ * so it doesn't blend into the background. One sec!
+ */
 pre, a {
   color: white;
 }
 
 /**
-* Much better, sorry about that..
-* While we are at it might as well change the colour of our code 
-* so we see what is what.
-*/
-
+ * There we go! Much better, right?
+ * While we're at it, let's sprinkle in some colors
+ * to make the code pop. 🎨
+ */
 .selector { 
   color: #E69F0F; 
 }
@@ -59,10 +57,9 @@ pre, a {
 }
 
 /**
-* Much better, Let's organize this a bit and move this code
-* to it's own window.
-*/
-
+ * Perfect! Now, let’s tidy things up a bit.
+ * Moving all this code into its own section will keep it neat. 📂
+ */
 .main-page-parent {
   display: flex;
   flex-direction: row;
@@ -74,15 +71,18 @@ pre, a {
 }
 
 /**
-* We are going to jump around a bit until we 
-* find the sweet spot. So sorry in advance...
-* Don't get motion sick on me.
-*/
-
+ * Brace yourself for some bouncing around!
+ * We're adjusting things until we hit the sweet spot.
+ * Don’t get dizzy. 😅
+ */
 .main-page-parent {
   justify-content: center;
 }
 
+/* 
+ * Aligning and organizing the content. 
+ * A good foundation makes everything better! 🧱 
+ */
 .main-page-child {
   display: flex;
   flex: 1;
@@ -95,9 +95,8 @@ pre, a {
 }
 
 /**
-* almost done... promise.
-*/
-
+ * Almost there, I promise! Hang tight.
+ */
 .scroll-box {
   padding-left: 2%;
   padding-right: 20%;
@@ -112,23 +111,23 @@ pre, a {
 }
 
 /**
-* Phew... finally.
-* Now to just change the font and size.
-*/
-
+ * And... voila!
+ * Let's make the text feel cozy and readable. ✍️
+ */
 .scroll-box {
   font-family: monospace;
   font-size: clamp(0.5rem, 0.9rem, 1.8rem);
 }
 .comment { 
-  color: #857F6B; font-style: italic; 
+  color: #857F6B; 
+  font-style: italic; 
 }
 
 /**
-* There! Now we have it more organized.
-* Hmm let's make the design a bit nicer, let's add some shadow, a nice border.
-*/
-
+ * There we go, looking more organized already.
+ * Time to add some flair with borders and shadows.
+ * A little magic dust for the design! ✨
+ */
 .scroll-box {
   border: 1px solid #45A29E;
   scrollbar-color: #45A29E #1F2833;
@@ -136,6 +135,6 @@ pre, a {
 }
 
 /**
-* A bit better, right?
-* Now to give you what you came for.
-*/
+ * Much better, right? 👌
+ * Now let's deliver the content you came for. 💡
+ */

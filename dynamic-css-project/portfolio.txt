@@ -1,4 +1,9 @@
 Portfolio
-Some of the work I have done
-Tetris
-Visual Sorting Algorithm
+
+Some of the work I have done.
+
+https://github.com/DenisUreke/IOS-LinkPalm-final
+https://github.com/DenisUreke/Andriod-BattleShip-Multiplayer-Game
+https://github.com/DenisUreke/CSS-animations-website
+https://github.com/DenisUreke/Tetris
+https://github.com/DenisUreke/Python-Game

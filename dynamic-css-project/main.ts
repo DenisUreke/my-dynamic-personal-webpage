@@ -1,5 +1,6 @@
 import styles0 from './styles0.css?raw';
 import styles1 from './styles1.css?raw';
+import styles2 from './styles2.css?raw';
 import fileContent from './contactinfo.txt?raw';
 import filecontent2 from './portfolio.txt?raw';
 
@@ -9,40 +10,55 @@ const codeContent = document.getElementById('code-content') as HTMLElement;
 const portfoliocontent = document.getElementById('portfolio-content') as HTMLElement;
 
 
-let lineBuffer: string = "";
 
 enum ContactType {
   Title = 'class="title"',
   SubTitle = 'class="sub-title"',
   Content = 'class="content"',
-  Link = ""
+  Link = 'class="link'
+}
+enum CurrentIteration{
+  Contact,
+  Portfolio
 }
 
-export async function writeContact(contactContent: HTMLElement, text: string) {
+let lineBuffer: string = "";
+
+export async function writeContact(contactContent: HTMLElement, text: string, iteration: CurrentIteration) {
     let fullText = '';
     const trimmedfile = cleanRawCSS(text);
     console.log(trimmedfile);
 
     for (let i = 0; i < trimmedfile.length; i++) {
         const character = trimmedfile[i];
-        fullText = writeCharContact(fullText, character);
+        fullText = writeCharContact(fullText, character, iteration);
         contactContent.innerHTML = fullText;
         await pause(20);
     }
     if (lineBuffer.trim() !== "") {
         const trimmedLine = lineBuffer.trim();
+        if(iteration === CurrentIteration.Contact){
         fullText = wrapLine(fullText, trimmedLine);
+        }
+        else if (iteration === CurrentIteration.Portfolio){
+        fullText = wrapPortfolio(fullText, trimmedLine);      
+        }
         contactContent.innerHTML = fullText;
         lineBuffer = "";
     }
 }
 
-function writeCharContact(fullText: string, character: string): string {
+function writeCharContact(fullText: string, character: string, iteration: CurrentIteration): string {
     lineBuffer += character;
 
     if (character === '\n') {
         const trimmedLine = lineBuffer.trim();
-        fullText = wrapLine(fullText, trimmedLine);
+        if(iteration === CurrentIteration.Contact){
+          fullText = wrapLine(fullText, trimmedLine);
+          }
+          else if (iteration === CurrentIteration.Portfolio){
+          fullText = wrapPortfolio(fullText, trimmedLine);      
+          }
         lineBuffer = "";
     } else {
         fullText += character;
@@ -91,13 +107,33 @@ function wrapPortfolio(fullText: string, line: string): string {
       return fullText.replace(line, `<span ${ContactType.SubTitle}>${line}\n\n</span>`);
     }
     else if(index2 >= 2){
-      index2 ++;
-      return fullText.replace(line, `<span ${ContactType.Content}>${line}\n</span>`);
+      let name = extractName(line);
+      return fullText.replace(line,`<span class="link"><a href="${line.trim()}">${name}</a></span>\n`);
     }
     return fullText.replace(line, `<span ${ContactType.Content}>${line}</span>`);
   }
   return fullText + `<span>${line}</span><br>`;
 }
+
+
+function extractName(line: string): string{
+  let name: string = ""
+  let indexOfLastBackslash = 0;
+
+for(let i = line.length -1; i >= 0; i -= 1){
+  if(line[i] === "/"){
+    indexOfLastBackslash = i+1;
+    break;
+  }
+}
+
+for( let y = indexOfLastBackslash; y <= line.length -1; y++){
+  name += line[y];
+}
+
+return name;
+}
+
 
 //********************************************************************* */
 
@@ -122,11 +158,11 @@ async function writeToDocument(rawCSS: string) {
     const lastTwo = fullText.slice(-2);
     const lookForDot = /([a-zA-Z]\.|\.{2})/;
     codeContent.innerHTML = fullText;
-    if(lookForDot.test(lastTwo) || character === '?'){
-      await pause(20);
+    if(lookForDot.test(lastTwo) || character === '?' || character === '!'){
+      await pause(1200);
     }
     if(character === '}' || character === ','){
-      await pause(20);
+      await pause(500);
     }
 
     codeContent.scrollTop = codeContent.scrollHeight;
@@ -191,17 +227,19 @@ export function pause(duration: number): Promise<void> {
 }
 
 
-async function Start(cleanedone: string, cleanedtwo: string) {
+async function Start(cleanedone: string, cleanedtwo: string, cleanedthree: string) {
   console.log('Starting with cleanedone:', cleanedone);
-  //await writeToDocument(cleanedone);
+  await writeToDocument(cleanedone);
   console.log('Finished cleanedone, moving to contact');
-  //await writeContact(contactContent, fileContent);
+  await writeContact(contactContent, fileContent, CurrentIteration.Contact);
   console.log('Finished contact, starting cleanedtwo:', cleanedtwo);
-  //await writeToDocument(cleanedtwo);
-  await writeContact(portfoliocontent, filecontent2)
+  await writeToDocument(cleanedtwo);
+  await writeContact(portfoliocontent, filecontent2, CurrentIteration.Portfolio)
+  await writeToDocument(cleanedCSSthree);
 }
 
 const cleanedCSS = cleanRawCSS(styles0);
-const cleanedCSStwo = cleanRawCSS(styles1); // Should be different
+const cleanedCSStwo = cleanRawCSS(styles1);
+const cleanedCSSthree = cleanRawCSS(styles2);
 
-Start(cleanedCSS, cleanedCSStwo);
+Start(cleanedCSS, cleanedCSStwo, cleanedCSSthree);

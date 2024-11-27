@@ -1,27 +1,31 @@
-
 /**
-* Lets make them a bit bigger!
-*/
-
-.title {
+ * Let's crank up the font size a bit! 
+ * Bigger text = bigger impact. 💪
+ */
+ .title {
   font-size: clamp(1rem, 2rem, 4rem);
   font-weight: bold;
 }
 
 /**
-* Maybe an underline.
-*/
-
+ * Hmm, what about some emphasis?
+ * An underline should do the trick! ✏️
+ */
 .sub-title {
-    font-size: clamp(0.8rem, 1.4rem, 3rem);
-    font-weight: bold;
-    text-decoration: underline;
-  }
+  font-size: clamp(0.8rem, 1.4rem, 3rem);
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 /**
-* Hard to contact me if you can't see it..
-*/
-
+ * Can't have contact info hiding in plain sight.
+ * Let's make it stand out a bit more! 🔍
+ */
 .content {
   font-size: clamp(0.6rem, 1.2rem, 2rem);
 }
+
+/**
+ * Alright, time for the fun part!
+ * Here's a sneak peek of what I've been working on. 🚀
+ */
