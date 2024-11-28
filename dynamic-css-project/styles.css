@@ -4,6 +4,7 @@ pre {
   
   .scroll-box {
     display: inline-block !important;
+    overflow-x: hidden; 
   }
 
   #toggleButton {
@@ -22,4 +23,51 @@ pre {
   
   #toggleButton:hover {
     background-color: #66FCF1;
+  }
+
+  @media (max-width: 768px) {
+
+    .main-page-parent {
+      margin: 0;
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  
+    .main-page-child {
+      flex: none;
+      width: 50%;
+      height: 100% !important;
+      height: auto;
+      gap: 0 !important;
+    }
+  
+    .scroll-box {
+      height: auto;
+      min-height: 50%;
+      overflow-y: auto; 
+      overflow-x: hidden;
+      padding: 0;
+    }
+
+    #code-content {
+      font-size: clamp(0.2rem, 0.4rem, 0.6rem);
+    }
+    .title {
+      font-size: clamp(0.4rem, 1.2rem, 1.4rem);
+    }
+    .sub-title {
+      font-size: clamp(0.4rem, 1rem, 1.2rem);
+    }
+    .content {
+      font-size: clamp(0.4rem, 0.9rem, 1rem);
+    }
+    .link {
+      font-size: clamp(0.4rem, 0.9rem, 1rem);
+    }
+  }
+
+  .hidden {
+    display: none;
   }

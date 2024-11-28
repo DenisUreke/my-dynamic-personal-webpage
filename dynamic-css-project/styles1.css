@@ -5,7 +5,7 @@
  */
 
  .title {
-  font-size: clamp(1rem, 2rem, 4rem);
+  font-size: clamp(0.6rem, 2rem, 4rem);
   font-weight: bold;
 }
 
@@ -15,7 +15,7 @@
  */
 
 .sub-title {
-  font-size: clamp(0.8rem, 1.4rem, 3rem);
+  font-size: clamp(0.5rem, 1.4rem, 3rem);
   font-weight: bold;
   text-decoration: underline;
 }
@@ -26,7 +26,7 @@
  */
 
 .content {
-  font-size: clamp(0.6rem, 1.2rem, 2rem);
+  font-size: clamp(0.4rem, 1.2rem, 2rem);
 }
 
 /**

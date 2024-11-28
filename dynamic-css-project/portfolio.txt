@@ -1,6 +1,6 @@
 Portfolio
 
-Some of the work I have done.
+Some of my work.
 
 https://github.com/DenisUreke/IOS-LinkPalm-final
 https://github.com/DenisUreke/Andriod-BattleShip-Multiplayer-Game

@@ -229,7 +229,14 @@ const toggleButton = document.getElementById('toggleButton') as HTMLButtonElemen
 
 toggleButton.addEventListener('click', () =>{
   hurryUp = !hurryUp;
+  toggleButton.innerText = hurryUp ? 'Calm Down!' : 'Hurry Up!';
 })
+
+function removeButtonAtEnd(){
+  const button = document.getElementById('toggleButton') as HTMLButtonElement;
+  button.classList.add('hidden');
+
+}
 
 export function pause(duration: number): Promise<void> {
 
@@ -251,6 +258,7 @@ async function Start(cleanedone: string, cleanedtwo: string, cleanedthree: strin
   await writeToDocument(cleanedtwo);
   await writeContact(portfoliocontent, filecontent2, CurrentIteration.Portfolio)
   await writeToDocument(cleanedCSSthree);
+  removeButtonAtEnd();
 }
 
 const cleanedCSS = cleanRawCSS(styles0);
